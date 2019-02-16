@@ -1,0 +1,36 @@
+buildscript {
+	ext {
+		springBootVersion = '2.1.2.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+apply plugin: 'war'
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	runtimeOnly 'mysql:mysql-connector-java'
+	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+	providedRuntime 'org.apache.tomcat.embed:tomcat-embed-jasper'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testCompile group: 'org.junit.contrib', name: 'junit-theories', version: '4.12'
+	compile group: 'jstl', name: 'jstl', version: '1.2'
+	compile 'org.springframework.boot:spring-boot-starter-thymeleaf'
+	compile 'org.webjars:jquery-ui:1.11.4'
+}
