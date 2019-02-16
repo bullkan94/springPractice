@@ -3,14 +3,11 @@ package spittr.config;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.annotation.*;
-import org.springframework.web.servlet.view.JstlView;
 import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 import org.thymeleaf.templatemode.TemplateMode;
-import org.springframework.web.servlet.*;
 import org.springframework.web.servlet.config.annotation.*;
-import org.springframework.web.servlet.view.*;
 
 @Configuration
 @EnableWebMvc
@@ -20,11 +17,19 @@ public class WebConfig implements WebMvcConfigurer, ApplicationContextAware {
 	
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
-		registry.addResourceHandler("/libs/**")
-			.addResourceLocations("classpath:/resource/assets/libs/**");
-		registry.addResourceHandler("/vendor/**")
-			.addResourceLocations("classpath:/resource/assets/vendor/**");
+		registry.addResourceHandler(
+				"/libs/**",
+				"/vendor/**",
+				"/images/**"
+				)
+			.addResourceLocations(
+					"classpath:/assets/libs/",
+					"classpath:/assets/vendor/",
+					"classpath:/assets/images/");
+		WebMvcConfigurer.super.addResourceHandlers(registry);
 	}
+	
+	
 	
 	@Bean
 	public ThymeleafViewResolver viewResolver() {
