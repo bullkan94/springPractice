@@ -1,4 +1,4 @@
-package spittr.config;
+package spring.config;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
@@ -11,7 +11,7 @@ import org.springframework.web.servlet.config.annotation.*;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan("spittr.web")
+@ComponentScan(basePackages= {"spring"})
 public class WebConfig implements WebMvcConfigurer, ApplicationContextAware {
 	private ApplicationContext applicationContext;
 	

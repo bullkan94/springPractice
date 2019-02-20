@@ -15,6 +15,6 @@ public class SpittrWebAppInitializer
 	
 	@Override
 	protected Class<?>[] getServletConfigClasses() {
-		return new Class<?>[] { spittr.config.WebConfig.class };
+		return new Class<?>[] { spring.config.WebConfig.class };
 	}
 }
