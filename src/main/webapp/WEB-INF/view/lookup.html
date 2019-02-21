@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+ 
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../../resource/assets/vendor/bootstrap/css/bootstrap.min.css" th:href="@{/vendor/bootstrap/css/bootstrap.min.css}">
+    <link href="../../resource/assets/vendor/fonts/circular-std/style.css" rel="stylesheet" type="text/css" th:href="@{/vendor/fonts/circular-std/style.css}" >
+    <link rel="stylesheet" href="../../resource/assets/libs/css/style.css" th:href="@{/libs/css/style.css}">
+    <link rel="stylesheet" href="../../resource/assets/vendor/fonts/fontawesome/css/fontawesome-all.css" th:href="@{/vendor/fonts/fontawesome/css/fontawesome-all.css}">
+    <link rel="stylesheet" href="../../resource/assets/vendor/charts/chartist-bundle/chartist.css" th:href="@{/vendor/charts/chartist-bundle/chartist.css}">
+    <link rel="stylesheet" href="../../resource/assets/vendor/charts/morris-bundle/morris.css" th:href="@{/vendor/charts/morris-bundle/morris.css}">
+    <link rel="stylesheet" href="../../resource/assets/vendor/fonts/material-design-iconic-font/css/materialdesignicons.min.css" th:href="@{/vendor/fonts/material-design-iconic-font/css/materialdesignicons.min.css}">
+    <link rel="stylesheet" href="../../resource/assets/vendor/charts/c3charts/c3.css" th:href="@{/vendor/assets/vendor/charts/c3charts/c3.css}">
+    <link rel="stylesheet" href="../../resource/assets/vendor/fonts/flag-icon-css/flag-icon.min.css" th:href="@{/vendor/fonts/flag-icon-css/flag-icon.min.css}">
+    <title>Lookup</title>
+</head>
+
+<body>
+    <!-- ============================================================== -->
+    <!-- main wrapper -->
+    <!-- ============================================================== -->
+    <div class="dashboard-main-wrapper">
+        <!-- ============================================================== -->
+        <!-- navbar -->
+        <!-- ============================================================== -->
+        <div class="dashboard-header">
+            <nav class="navbar navbar-expand-lg bg-white fixed-top">
+                <a class="navbar-brand" th:href="home">News</a>
+                </div>
+            </nav>
+        </div>
+        <!-- ============================================================== -->
+        <!-- end navbar -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- left sidebar -->
+        <!-- ============================================================== -->
+        <div class="nav-left-sidebar sidebar-dark">
+            <div class="menu-list">
+                <nav class="navbar navbar-expand-lg navbar-light">
+                    <a class="d-xl-none d-lg-none" href="#">Dashboard</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav flex-column">
+                            <li class="nav-divider">
+                                Menu
+                            </li>
+                            <li class="nav-item ">
+                                <a class="nav-link active" th:href="home" data-toggle="collapse" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1"><i class="fa fa-fw fa-user-circle"></i>Home <span class="badge badge-success"></span></a>
+                            </li>
+                            <li class="nav-item ">
+                                <a class="nav-link active" th:href="add" data-toggle="collapse" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1"><i class="fa fa-fw fa-user-circle"></i>Add Headline <span class="badge badge-success"></span></a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- end left sidebar -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- wrapper  -->
+        <!-- ============================================================== -->
+        <div class="dashboard-wrapper">
+            <div class="container-fluid">
+                <div class="main-content container-fluid p-0">
+                    <div class="email-head">
+                        <div class="email-head-title">Update Headline Information<span class="icon mdi mdi-edit"></span></div>
+                    </div>
+                    
+                    <form th:action="@{/update}"  th:object="${news}" method="post">
+                    	<input th:name="pubDate" type="hidden" th:value="${info.pubDate}" th:id ="pubDate">
+ 	                    <input th:name="idx" type="hidden" th:value="${info.idx}" th:id="idx">
+                    	<div class="email-compose-fields">
+                        	<div class="subject">
+                            	<div class="form-group row pt-2">
+                                	<label class="col-md-1 control-label">Title : </label>
+                                	<div class="col-md-11">
+                                    	<input class="form-control" th:name="title" type="text" th:value="${info.title}" th:id="title">
+                                	</div>
+                            	</div>
+                        	</div>                        
+                        	<div class="subject">
+                            	<div class="form-group row pt-2">
+                                	<label class="col-md-1 control-label">Link : </label>
+                                	<div class="col-md-11">
+                                    	<input class="form-control" th:name="link" type="text" th:value="${info.link}" th:id="link">
+                                	</div>
+                            	</div>
+                        	</div>
+                        	<div class="email action-send">
+                            	<div class="col-md-12 ">
+                                	<div class="form-group">
+                                    	<button class="btn btn-primary btn-space" type="submit"><i class="icon s7-mail"></i> Send</button>
+                                    	<button class="btn btn-secondary btn-space" type="button"><i class="icon s7-close"></i> Cancel</button>
+                                	</div>
+                            	</div>
+                        	</div>
+                    	</div>
+                    </form>
+                    <form th:action="@{/delete}" th:method="get">
+                    	<input type="hidden" th:name="idx" th:value="${info.idx}" th:id="idx">
+                    	<button class="btn btn-secondary btn-space" type="submit"><i class="icon s7-close"></i> Delete</button>
+                    </form>
+                    
+                </div>
+            </div>
+            <!-- ============================================================== -->
+            <!-- footer -->
+            <!-- ============================================================== -->
+            <div class="footer">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                            Copyright © 2018 Concept. All rights reserved. Dashboard by <a href="https://colorlib.com/wp/">Colorlib</a>.
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                            <div class="text-md-right footer-links d-none d-sm-block">
+                                <a href="javascript: void(0);">About</a>
+                                <a href="javascript: void(0);">Support</a>
+                                <a href="javascript: void(0);">Contact Us</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ============================================================== -->
+            <!-- end footer -->
+            <!-- ============================================================== -->
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- end main wrapper  -->
+    <!-- ============================================================== -->
+    <!-- Optional JavaScript -->
+    <script th:src="|${vendor}/jquery/jquery-3.3.1.min.js|"></script>
+    <script th:src="|${vendor}/bootstrap/js/bootstrap.bundle.js|"></script>
+    <script th:src="|${vendor}/slimscroll/jquery.slimscroll.js|"></script>
+    <script th:src="|${libs}/js/main-js.js|"></script>
+    <script th:src="|${vendor}/select2/js/select2.min.js|"></script>
+    <script th:src="|${vendor}/summernote/js/summernote-bs4.js|"></script>
+</body>
+ 
+</html>
